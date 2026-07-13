@@ -18,7 +18,7 @@ const getCookie =  () => {
 
 export const AuthProvider = ({ children }) => {
   const location = useLocation()
-  const [auth, setAuth] = useState(null);
+  const [auth, setAuth] = useState<any>(null);
 
   useLayoutEffect(() => {
   

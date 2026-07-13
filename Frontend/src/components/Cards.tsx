@@ -51,8 +51,21 @@ export const cardData = [
   },
 ];
 
-export const CardComponent = ({ items }) => {
-  const [data,setData]  = useState({})
+type CardItem = {
+  text: string;
+  value?: string | number;
+  trend?: string;
+  icon: React.ElementType;
+  color?: string;
+};
+
+type CardProps = {
+  items: CardItem;
+};
+
+export const CardComponent = ({items}:CardProps ) => {
+  const [data,setData]  = useState<any>({})
+
   useEffect(()=>{
   const fetchData = async () => {
     const response = await axios.get("http://localhost:5000/dashboard/data", {

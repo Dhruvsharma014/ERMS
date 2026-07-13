@@ -55,7 +55,7 @@ const Edit_Admin = () => {
   const navigate = useNavigate();
 
   const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState<any>(false);
 
   const submitHandler = async () => {
     const data: { email?: string; password?: string; userType?: string } = {};
@@ -78,7 +78,7 @@ const Edit_Admin = () => {
     console.log(payload);
     try {
       const response = await axios.patch(
-        `http://localhost:5000/admin/edit/${id}`,
+        `/admin/edit/${id}`,
         payload,
         {
           withCredentials: true,

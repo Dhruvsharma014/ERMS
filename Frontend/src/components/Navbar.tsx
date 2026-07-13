@@ -9,9 +9,9 @@ import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState<any>(false);
     const navigate = useNavigate();
-   const [logoutDialogOpen, setLogoutDialogOpen] = useState(false);
+   const [logoutDialogOpen, setLogoutDialogOpen] = useState<any>(false);
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
   };
