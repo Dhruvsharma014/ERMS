@@ -26,6 +26,11 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    skill:{
+        type:[String],
+        default:[]
+    }
+    ,
     photo:{
         type:String,
         required:true

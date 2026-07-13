@@ -21,6 +21,10 @@ import axios from "axios";
 import api from "../constants/Api";
 import { useNavigate } from "react-router-dom";
 
+
+
+
+
 const AdminTable = ({ admin_Data }) => {
   return (
     <Stack sx={{ width: "100%", alignItems: "center", display: "flex" }}>
@@ -154,6 +158,8 @@ const Dashboard = () => {
     fetchAdmin();
     fetchEmployee();
   }, []);
+
+
 
   return (
     <Box>

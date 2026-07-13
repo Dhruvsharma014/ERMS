@@ -13,6 +13,8 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import QueuePlayNextIcon from '@mui/icons-material/QueuePlayNext';
 import GroupsIcon from "@mui/icons-material/Groups";
 import BadgeIcon from '@mui/icons-material/Badge';
+import PaidIcon from '@mui/icons-material/Paid';
+
 import { CardHoverStyles } from "../theme/componentStyles";
 import { useNavigate,useLocation } from "react-router-dom";
 const Sidebar = ({ onClose }: { onClose: () => void }) => {
@@ -23,6 +25,7 @@ const Sidebar = ({ onClose }: { onClose: () => void }) => {
           { text: "Dashboard", icon: DashboardIcon, path: "/dashboard" },
           { text: "Admin Operation", icon: QueuePlayNextIcon, path: "/admin-operation" },
           { text: "Employee Operation", icon: BadgeIcon, path: "/employee-operation" },
+          // { text: "Payroll", icon: PaidIcon, path: "/payroll" },
           
         ]
 
@@ -73,10 +76,10 @@ const Sidebar = ({ onClose }: { onClose: () => void }) => {
           overflowY: "auto",
         }}
       >
-        {/* 'Dashboard','Attendance','Team member','Leave Mangement','Performance','Payroll','Documents','Analytics' */}
+      
         {menuItems.map((data, index) => (
           <ListItem key={index}>
-            <ListItemButton onClick={()=>{navigate(data.path); onClose()}} sx={{...CardHoverStyles ,bgcolor: location.pathname==data.path?"blue":"transparent" }}>
+            <ListItemButton onClick={()=>{navigate(data.path); onClose()}} sx={{...CardHoverStyles ,bgcolor: location.pathname==data.path?"#1e3baf":"transparent" }}>
               <ListItemIcon sx={{ color: "lightgray" }}>
                 {<data.icon />}
               </ListItemIcon>

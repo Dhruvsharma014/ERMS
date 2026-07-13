@@ -3,55 +3,43 @@ import {
   Box,
   Button,
   Chip,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
   Divider,
   Grid,
   IconButton,
   Paper,
   Stack,
-  Tooltip,
   Typography,
 } from "@mui/material";
 
 import {
-  Edit,
-  Delete,
   Download,
   ArrowBack as ArrowBackIcon,
   Article as ArticleIcon,
 } from "@mui/icons-material";
 
-import DownloadIcon from "@mui/icons-material/Download";
-
-
-import { useEffect,useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+
 import axios from "axios";
 
 import api from "../../constants/Api";
-import { toast } from "react-toastify";
+
+import DownloadIcon from "@mui/icons-material/Download";
 
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { PDFDocument } from "pdf-lib";
 
-const View_employee = () => {
+const Views_employee = () => {
   const { id } = useParams();
 
   const [employee, setEmployee] = useState(null);
-  const [open, setOpen] = useState<any>("");
+  const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
+
   const navigate = useNavigate();
 
-  const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const downloadBtnRef = useRef<HTMLButtonElement>(null);
-
-
-
 
   useEffect(() => {
     const fetchEmployee = async () => {
@@ -60,7 +48,6 @@ const View_employee = () => {
       });
 
       setEmployee(response.data.user);
-      console.log(response.data.user.firstName);
     };
 
     fetchEmployee();
@@ -70,19 +57,7 @@ const View_employee = () => {
     return <Typography>Loading...</Typography>;
   }
 
-  const deleteHandler = async () => {
-    try {
-      await axios.delete(`${api.user.delete}/${id}`);
-
-      toast.success("Deleted Successfully");
-      navigate("/employee-operation");
-    } catch (error: any) {
-      console.log(error);
-      toast.error("delete Failed");
-    }
-  };
-
-    const downloadCard = async () => {
+  const downloadCard = async () => {
     setIsGeneratingPdf(true);
 
     await new Promise((resolve) => setTimeout(resolve, 100));
@@ -172,11 +147,11 @@ const View_employee = () => {
   return (
     <Box
       sx={{
-        minHeight: "100vh",
+        minHeight: "100%",
         p: 4,
       }}
     >
-     <Paper
+      <Paper
         elevation={3}
         sx={{
           borderRadius: 4,
@@ -193,7 +168,7 @@ const View_employee = () => {
         >
           <Stack spacing={3} sx={{ mb: 2, mt: 2 }} direction={"row"}>
             <IconButton
-              onClick={() => navigate("/employee-operation")}
+              onClick={() => navigate("/employee-list")}
               sx={{ color: "#1E3A8A" }}
             >
               <ArrowBackIcon />
@@ -263,7 +238,6 @@ const View_employee = () => {
                 my: 4,
               }}
             />
-            
             <Grid container spacing={3}>
               <Grid size={{ xs: 12, md: 6 }}>
                 <Typography variant="body2" color="text.secondary">
@@ -418,33 +392,8 @@ const View_employee = () => {
           </Grid>
         </Grid>
       </Paper>
-
-      <Dialog open={open} onClose={() => setOpen(false)}>
-        <DialogTitle>Deleted {employee.firstName}</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Are you sure you want to delete this admin
-          </DialogContentText>
-        </DialogContent>
-
-        <DialogActions sx={{ display: "flex" }}>
-          <Button sx={{ flexGrow: 1 }} onClick={() => setOpen(false)}>
-            Cancel
-          </Button>
-          <Button
-            sx={{ flexGrow: 1 }}
-            color="error"
-            variant="contained"
-            onClick={() => {
-              deleteHandler();
-              setOpen(false);
-            }}
-          >
-            Delete
-          </Button>
-        </DialogActions>
-      </Dialog>
     </Box>
   );
 };
-export default View_employee;
+
+export default Views_employee;

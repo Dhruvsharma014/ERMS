@@ -4,29 +4,9 @@ const { userValidation } = require("../validations/userValidation");
 const path = require("path");
 
 const addUser = async (req, res) => {
-  // const {error,value} = (req.body);
-  // if(error){
-  //   return res.status(400).json({
-  //       success:false,
-  //       message:error.details[0].message
-  //   })
-  // }
 
-  // if (!req.files?.photo) {
-  //       return res.status(400).json({
-  //           success: false,
-  //           message: "Photo is required"
-  //       });
-  //   }
 
-  //   if (!req.files?.cv) {
-  //       return res.status(400).json({
-  //           success: false,
-  //           message: "CV is required"
-  //       });
-  //   }
-
-  const { firstName, lastName, email, experience, technology } = req.body;
+  const { firstName, lastName, email, experience, technology, skill } = req.body;
 
   const exists = await User.findOne({ email });
   if (exists) {
@@ -45,12 +25,18 @@ const addUser = async (req, res) => {
   const photo = req.files.photo[0].filename;
   const cv = req.files.cv[0].filename;
 
+ const parsedSkill = skill
+  ? JSON.parse(skill)
+  : [];
+
+
   const user = await User.create({
     firstName,
     lastName,
     email,
     experience,
     technology,
+    skill: parsedSkill,
     photo,
     cv,
   });
@@ -99,19 +85,26 @@ const singleUser = async (req, res) => {
 
 const editUser = async (req, res) => {
   const { id } = req.params;
-  const allowedFields = [
+  let allowedFields = [
     "firstName",
     "lastName",
     "email",
     "experience",
     "technology",
+    "skill"
   ];
+
   const updates = {};
+
   allowedFields.forEach((field) => {
     if (req.body[field] !== undefined) {
       updates[field] = req.body[field];
     }
   });
+
+   if (updates.skill) {
+    updates.skill = JSON.parse(updates.skill);
+  }
 
   const oldUser = await User.findById(id);
   if (req.files?.photo) {

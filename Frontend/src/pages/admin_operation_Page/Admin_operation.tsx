@@ -97,7 +97,7 @@ const Admin_operation = () => {
               >
                 <TableRow sx={{ color: "red" }}>
                   <TableCell>Email</TableCell>
-                  <TableCell>Password</TableCell>
+            
 
                   <TableCell>Roles</TableCell>
 
@@ -119,7 +119,7 @@ const Admin_operation = () => {
                   : admin_Data.map((item, index) => (
                       <TableRow key={index}>
                         <TableCell>{item.email}</TableCell>
-                        <TableCell>{item.password}</TableCell>
+                     
                         <TableCell>{item.userType}</TableCell>
                         <TableCell sx={{ display: "flex", gap: 2 }}>
                           <IconButton

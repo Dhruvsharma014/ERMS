@@ -7,6 +7,7 @@ import api from "../constants/Api";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
+
 const Navbar = () => {
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
@@ -53,9 +54,18 @@ const Navbar = () => {
             </Typography>
           </IconButton>
           <Box sx={{flexGrow: 1, display: "flex", justifyContent: "flex-end"}}>
-            <Button sx={{bgcolor:"#3E52A0",color:'white'}}  color="inherit" onClick={()=>{
+            {
+              (auth!==null)?(
+                     <Button sx={{bgcolor:"#3E52A0",color:'white'}}  color="inherit" onClick={()=>{
              setLogoutDialogOpen(true)
             }}>Logout</Button>
+              ):(
+                 <Button sx={{bgcolor:"#3E52A0",color:'white'}}  color="inherit" onClick={()=>{
+             navigate('/login')
+            }}>LogIn</Button>
+              )
+            }
+           
           </Box>
         </Toolbar>
       </AppBar>

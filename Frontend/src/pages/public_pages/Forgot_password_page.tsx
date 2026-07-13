@@ -5,13 +5,21 @@ import {
   Stack,
   TextField,
   Button,
+  IconButton,
 } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
 import api from "../../constants/Api";
 import { toast } from "react-toastify";
 import { CircularProgress } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import loginBg from "../../assets/loginPageBg.png";
+
+
 const ForgotPassword = () => {
+
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -42,62 +50,50 @@ const ForgotPassword = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        background:
-          "linear-gradient(135deg, #111827 0%, #1E293B 50%, #334155 100%)",
+       backgroundImage: `
+      linear-gradient(
+        rgba(15, 23, 42, 0.50),
+        rgba(15, 23, 42, 0.65)
+      ),
+      url(${loginBg})
+    `,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
         position: "relative",
         overflow: "hidden",
       }}
     >
-      {/* Background Circles */}
+     
 
-      <Box
-        sx={{
-          position: "absolute",
-          width: 250,
-          height: 250,
-          borderRadius: "50%",
-          background: "rgba(255,255,255,0.05)",
-          top: "10%",
-          left: "15%",
-          filter: "blur(20px)",
-        }}
-      />
-
-      <Box
-        sx={{
-          position: "absolute",
-          width: 300,
-          height: 300,
-          borderRadius: "50%",
-          background: "rgba(255,255,255,0.05)",
-          bottom: "10%",
-          right: "10%",
-          filter: "blur(20px)",
-        }}
-      />
+      
 
       <Paper
         elevation={0}
         sx={{
-          width: 450,
+         width: 420,
           p: 5,
           borderRadius: 5,
-          background: "rgba(255,255,255,0.08)",
+          background: "rgba(255,255,255,0.12)",
           backdropFilter: "blur(20px)",
-          border: "1px solid rgba(255,255,255,0.15)",
+          border: "1px solid rgba(255,255,255,0.2)",
           color: "white",
+          
         }}
       >
+         <IconButton onClick={()=>navigate('/login')} sx={{color:'white'}}>
+          <ArrowBackIcon />
+        </IconButton>
         <Typography
           variant="h4"
-          sx={{
-            textAlign: "center",
-            fontWeight: 700,
-            mb: 1,
-          }}
+          fontWeight="bold"
+          sx={{textAlign:"center",mb:3}}
+
+          color="white"
         >
           Forgot Password
         </Typography>
+      
 
         <Typography
           sx={{
