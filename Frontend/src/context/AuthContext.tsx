@@ -2,8 +2,11 @@ import { createContext, useContext, useEffect, useLayoutEffect, useState } from 
 import { useLocation } from "react-router-dom";
 
 
-
-const AuthContext = createContext();
+interface AuthContextType {
+    auth: any;
+    setAuth: React.Dispatch<React.SetStateAction<any>>;
+}
+const AuthContext = createContext<AuthContextType | null>(null);
 
 const getCookie =  () => {
   const cookie = document.cookie
@@ -33,5 +36,11 @@ export const AuthProvider = ({ children }) => {
 };
 
 export const useAuth = () => {
-  return useContext(AuthContext);
+  const context = useContext(AuthContext);
+
+  if(!context){
+    throw new Error("useAuth must be used inside AuthProvider")
+  }
+
+  return context;
 };
