@@ -67,7 +67,7 @@ export const CardComponent = ({items}:CardProps ) => {
 
   useEffect(()=>{
   const fetchData = async () => {
-    const response = await axios.get("http://localhost:5000/dashboard/data", {
+    const response = await axios.get("/dashboard/data", {
       withCredentials: true,
     });
     setData(response.data);
