@@ -80,15 +80,15 @@ const AdminTable = ({ admin_Data }:AdminTableProps) => {
   );
 };
 
-const Employee{
-     _id?:string,
-   email:string,
-   firstName:string,
-   lastName:string,
-   photo:string
+interface Employee{
+     _id?:string;
+   email:string;
+   firstName:string;
+   lastName:string;
+   photo:string;
 }
 
-const EmployeeTableProps{
+interface EmployeeTableProps{
   employee_Data:Employee[]
 }
 
