@@ -181,7 +181,7 @@ const Dashboard = () => {
 
   return (
     <Box>
-      <Stack spacing={2} overflow="hidden">
+      <Stack spacing={2} sx={{overflow:"hidden"}}>
         <Grid container spacing={5}>
           {cardData.map((data, index) => (
             <Grid key={index}  size={{ xs: 6, sm: 4, md: 3, lg: 2 }}>
