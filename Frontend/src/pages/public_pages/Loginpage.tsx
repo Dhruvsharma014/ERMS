@@ -18,12 +18,17 @@ import { toast } from "react-toastify";
 import loginBg from "../../assets/loginPageBg.png";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
+import { useAuth } from "../../context/AuthContext";
+
 const Login = () => {
   const navigate = useNavigate();
+  const { setAuth } = useAuth();
+  
   const [email, setEmail] = useState("");
   const [password, setPasword] = useState("");
   const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const [showPassword, setShowPassword] = useState(false);
+
 
   const submitHandler = async () => {
     const payload = {
@@ -38,11 +43,12 @@ const Login = () => {
       console.log(response);
       const status = response.status;
       if (status > 199 && status < 300) {
+          setAuth(response.data);
         toast.success("Log in Successfully!");
+      navigate("/dashboard");
       } else {
         toast.error("Incorrect Email or Password");
       }
-      navigate("/dashboard");
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.log("Status :", error.response?.status);
