@@ -81,15 +81,15 @@ const AdminTable = ({ admin_Data }:AdminTableProps) => {
 };
 
 const Employee{
-     _id?:string;
-   email:string;
-   firstName:string;
-   lastName:string;
-   photo:string;
+     _id?:string,
+   email:string,
+   firstName:string,
+   lastName:string,
+   photo:string
 }
 
 const EmployeeTableProps{
-  employee_Data:Employee[];
+  employee_Data:Employee[]
 }
 
 const EmployeeTable = ({ employee_Data }:EmployeeTableProps) => {
