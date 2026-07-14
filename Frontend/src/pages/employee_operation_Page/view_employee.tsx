@@ -118,7 +118,7 @@ const View_employee = () => {
 
       // Fetch Resume PDF
       const resumeResponse = await fetch(
-        `http://localhost:5000/uploads/cv/${employee.cv}`,
+        `/uploads/cv/${employee.cv}`,
       );
 
       if (!resumeResponse.ok) {
@@ -233,7 +233,7 @@ const View_employee = () => {
                 sx={{ display: "flex", justifyContent: "center" }}
               >
                 <Avatar
-                  src={`http://localhost:5000/uploads/photos/${employee.photo}`}
+                  src={`/uploads/photos/${employee.photo}`}
                   sx={{
                     width: 170,
                     height: 170,
@@ -388,7 +388,7 @@ const View_employee = () => {
                           variant="outlined"
                           onClick={() =>
                             window.open(
-                              `http://localhost:5000/uploads/cv/${employee.cv}`,
+                              `/uploads/cv/${employee.cv}`,
                               "_blank",
                             )
                           }
@@ -403,7 +403,7 @@ const View_employee = () => {
                         startIcon={<Download />}
                         onClick={() =>
                           window.open(
-                            `http://localhost:5000/uploads/cv/${employee.cv}`,
+                            `/uploads/cv/${employee.cv}`,
                             "_blank",
                           )
                         }
