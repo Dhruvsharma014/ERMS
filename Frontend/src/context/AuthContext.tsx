@@ -1,6 +1,6 @@
-import { createContext, useContext, useEffect, useLayoutEffect, useState } from "react";
+import { createContext, useContext, useLayoutEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-
+import { ReactNode } from "react";
 
 interface AuthContextType {
     auth: any;
@@ -19,7 +19,11 @@ const getCookie =  () => {
   
 };
 
-export const AuthProvider = ({ children }) => {
+interface AuthProviderProps {
+children: ReactNode;
+}
+
+export const AuthProvider = ({ children }: AuthProviderProps) => {
   const location = useLocation()
   const [auth, setAuth] = useState<any>(null);
 
