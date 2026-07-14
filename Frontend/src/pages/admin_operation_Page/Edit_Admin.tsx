@@ -135,10 +135,7 @@ const Edit_Admin = () => {
         </IconButton>
         <Typography
           variant="h4"
-          fontWeight="bold"
-     
-          ml='3'
-          color="#1E3A8A"
+          sx={{fontWeight:'bold',ml:3,color:'#1E3A8A'}} 
         >
           Edit Admin
         </Typography>
