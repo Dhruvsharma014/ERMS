@@ -22,10 +22,16 @@ import api from "../constants/Api";
 import { useNavigate } from "react-router-dom";
 
 
+interface Admin{
+  id?: string;
+  email: string;
+}
 
+interface AdminTableProps{
+admin_Data: Admin[];
+}
 
-
-const AdminTable = ({ admin_Data }) => {
+const AdminTable = ({ admin_Data }:AdminTableProps) => {
   return (
     <Stack sx={{ width: "100%", alignItems: "center", display: "flex" }}>
       <Paper sx={{ width: "100%" }}>
@@ -60,7 +66,7 @@ const AdminTable = ({ admin_Data }) => {
             >
               {admin_Data.length === 0
                 ? "No Data"
-                : admin_Data.map((item, index) => (
+                : admin_Data.map((item, index:number) => (
                     <TableRow key={index}>
                       <TableCell sx={{ p: 2.34 }}>{item.email}</TableCell>
                     </TableRow>
@@ -74,7 +80,19 @@ const AdminTable = ({ admin_Data }) => {
   );
 };
 
-const EmployeeTable = ({ employee_Data }) => {
+const Employee{
+     _id?:string;
+   email:string;
+   firstName:string;
+   lastName:string;
+   photo:string;
+}
+
+const EmployeeTableProps{
+  employee_Data:Employee[];
+}
+
+const EmployeeTable = ({ employee_Data }:EmployeeTableProps) => {
   return (
     <Stack sx={{ width: "100%", alignItems: "center" }}>
       <Paper sx={{ width: "100%" }}>
@@ -113,7 +131,7 @@ const EmployeeTable = ({ employee_Data }) => {
             >
               {employee_Data.length === 0
                 ? "No Data"
-                : employee_Data.map((item, index) => (
+                : employee_Data.map((item, index:number) => (
                     <TableRow key={index}>
                       <TableCell>
                         <Avatar
