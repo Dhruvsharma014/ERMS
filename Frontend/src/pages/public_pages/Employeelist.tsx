@@ -28,6 +28,8 @@ import {
 import { useNavigate } from "react-router-dom";
 import { formatDate } from "../../utils/dateFormat";
 
+import { BACKEND_URL } from "../../config/config";
+
 const EmployeeList = () => {
   const navigate = useNavigate();
   const [admin_Data, setAdmin_Data] = useState<any>([]);
@@ -103,7 +105,7 @@ const EmployeeList = () => {
                       <TableRow key={index}>
                         <TableCell>
                           <Avatar
-                            src={`/uploads/photos/${item.photo}`}
+                            src={`${BACKEND_URL}/uploads/photos/${item.photo}`}
                           />
                         </TableCell>
                         <TableCell>{item.email}</TableCell>
