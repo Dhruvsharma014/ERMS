@@ -25,6 +25,8 @@ import {
   Article as ArticleIcon,
 } from "@mui/icons-material";
 
+import { BACKEND_URL } from "../../config/config";
+
 import DownloadIcon from "@mui/icons-material/Download";
 
 
@@ -118,7 +120,7 @@ const View_employee = () => {
 
       // Fetch Resume PDF
       const resumeResponse = await fetch(
-        `/uploads/cv/${employee.cv}`,
+        `${BACKEND_URL}/uploads/cv/${employee.cv}`,
       );
 
       if (!resumeResponse.ok) {
@@ -233,7 +235,7 @@ const View_employee = () => {
                 sx={{ display: "flex", justifyContent: "center" }}
               >
                 <Avatar
-                  src={`/uploads/photos/${employee.photo}`}
+                  src={`${BACKEND_URL}/uploads/photos/${employee.photo}`}
                   sx={{
                     width: 170,
                     height: 170,
@@ -388,7 +390,7 @@ const View_employee = () => {
                           variant="outlined"
                           onClick={() =>
                             window.open(
-                              `/uploads/cv/${employee.cv}`,
+                              `${BACKEND_URL}/uploads/cv/${employee.cv}`,
                               "_blank",
                             )
                           }
@@ -403,7 +405,7 @@ const View_employee = () => {
                         startIcon={<Download />}
                         onClick={() =>
                           window.open(
-                            `/uploads/cv/${employee.cv}`,
+                            `${BACKEND_URL}/uploads/cv/${employee.cv}`,
                             "_blank",
                           )
                         }
