@@ -77,7 +77,7 @@ export const CardComponent = ({items}:CardProps ) => {
   fetchData();
 },[])
 
-  const { text, value, icon: Icon, color } = items;
+  const { text, value, icon: Icon } = items;
   return (
     <Card
       sx={{
