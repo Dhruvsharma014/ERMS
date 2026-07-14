@@ -11,6 +11,8 @@ import {
   Typography,
 } from "@mui/material";
 
+import { BACKEND_URL } from "../../config/config";
+
 import {
   Download,
   ArrowBack as ArrowBackIcon,
@@ -93,7 +95,7 @@ const Views_employee = () => {
 
       // Fetch Resume PDF
       const resumeResponse = await fetch(
-        `/uploads/cv/${employee.cv}`,
+        `${BACKEND_URL}/uploads/cv/${employee.cv}`,
       );
 
       if (!resumeResponse.ok) {
@@ -208,7 +210,7 @@ const Views_employee = () => {
                 sx={{ display: "flex", justifyContent: "center" }}
               >
                 <Avatar
-                  src={`/uploads/photos/${employee.photo}`}
+                  src={`${BACKEND_URL}/uploads/photos/${employee.photo}`}
                   sx={{
                     width: 170,
                     height: 170,
@@ -362,7 +364,7 @@ const Views_employee = () => {
                           variant="outlined"
                           onClick={() =>
                             window.open(
-                              `/uploads/cv/${employee.cv}`,
+                              `${BACKEND_URL}/uploads/cv/${employee.cv}`,
                               "_blank",
                             )
                           }
@@ -377,7 +379,7 @@ const Views_employee = () => {
                         startIcon={<Download />}
                         onClick={() =>
                           window.open(
-                            `/uploads/cv/${employee.cv}`,
+                            `${BACKEND_URL}/uploads/cv/${employee.cv}`,
                             "_blank",
                           )
                         }
