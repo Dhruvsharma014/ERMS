@@ -10,6 +10,8 @@ import {
   Typography,
 } from "@mui/material";
 
+import { BACKEND_URL } from "../../config/config";
+
 import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
@@ -71,9 +73,9 @@ const Edit_employee = () => {
       setSkills(response.data.user.skill || []);
 
       setPhoto(
-        `/uploads/photos/${response.data.user.photo}`,
+        `${BACKEND_URL}/uploads/photos/${response.data.user.photo}`,
       );
-      setCv(`/uploads/cv/${response.data.user.cv}`);
+      setCv(`${BACKEND_URL}/uploads/cv/${response.data.user.cv}`);
     };
     fetchData();
   }, [id]);
