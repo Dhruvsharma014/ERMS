@@ -56,7 +56,6 @@ type CardItem = {
   value?: string | number;
   trend?: string;
   icon: React.ElementType;
-  color?: string;
 };
 
 type CardProps = {
