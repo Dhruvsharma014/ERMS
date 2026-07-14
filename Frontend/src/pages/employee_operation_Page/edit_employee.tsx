@@ -71,9 +71,9 @@ const Edit_employee = () => {
       setSkills(response.data.user.skill || []);
 
       setPhoto(
-        `http://localhost:5000/uploads/photos/${response.data.user.photo}`,
+        `/uploads/photos/${response.data.user.photo}`,
       );
-      setCv(`http://localhost:5000/uploads/cv/${response.data.user.cv}`);
+      setCv(`/uploads/cv/${response.data.user.cv}`);
     };
     fetchData();
   }, [id]);
