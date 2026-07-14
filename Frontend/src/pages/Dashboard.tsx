@@ -135,7 +135,7 @@ const EmployeeTable = ({ employee_Data }:EmployeeTableProps) => {
                     <TableRow key={index}>
                       <TableCell>
                         <Avatar
-                          src={`http://localhost:5000/uploads/photos/${item.photo}`}
+                          src={`/uploads/photos/${item.photo}`}
                         />
                       </TableCell>
                       <TableCell>{item.email}</TableCell>
