@@ -14,6 +14,8 @@ import {
   Typography,
 } from "@mui/material";
 
+import { BACKEND_URL } from "../config/config";
+
 import { ChartSection } from "../components/Charts";
 import { cardData, CardComponent } from "../components/Cards";
 import { useEffect, useState } from "react";
@@ -135,7 +137,7 @@ const EmployeeTable = ({ employee_Data }:EmployeeTableProps) => {
                     <TableRow key={index}>
                       <TableCell>
                         <Avatar
-                          src={`/uploads/photos/${item.photo}`}
+                          src={`${BACKEND_URL}/uploads/photos/${item.photo}`}
                         />
                       </TableCell>
                       <TableCell>{item.email}</TableCell>
