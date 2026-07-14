@@ -1,6 +1,6 @@
 import { createContext, useContext, useLayoutEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 interface AuthContextType {
     auth: any;
