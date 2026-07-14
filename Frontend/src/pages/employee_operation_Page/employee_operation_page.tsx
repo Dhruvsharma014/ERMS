@@ -29,6 +29,7 @@ import { toast } from "react-toastify";
 import AddIcon from "@mui/icons-material/Add";
 import { useNavigate } from "react-router-dom";
 import { formatDate } from "../../utils/dateFormat";
+import { BACKEND_URL } from "../../config/config";
 
 const Admin_operation = () => {
   const navigate = useNavigate();
@@ -123,7 +124,7 @@ const Admin_operation = () => {
                       <TableRow key={index}>
                         <TableCell>
                           <Avatar
-                            src={`/uploads/photos/${item.photo}`}
+                            src={`${BACKEND_URL}/uploads/photos/${item.photo}`}
                           />
                         </TableCell>
                         <TableCell>{item.email}</TableCell>
