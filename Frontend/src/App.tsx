@@ -2,7 +2,9 @@ import axios from "axios";
 import Approutes from "./routes/routes";
 import { ToastContainer } from "react-toastify";
 import { AuthProvider } from "./context/AuthContext";
-axios.defaults.baseURL = "https://erms-rjhx.onrender.com/";
+import { BACKEND_URL } from "./assets/config";
+axios.defaults.baseURL = BACKEND_URL;
+axios.defaults.withCredentials = true;
 
 const App = () => {
   return (
