@@ -13,6 +13,7 @@ import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { useState } from "react";
+import type { ChangeEvent } from "react";
 
 import api from "../../constants/Api";
 import { toast } from "react-toastify";
@@ -34,16 +35,36 @@ const VisuallyHiddenInput = styled("input")({
 });
 
 const Add_employee = () => {
-  const [errors, setErrors] = useState({});
+  interface FormErrors {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  experience?: string;
+  technology?: string;
+  skill?: string;
+  photo?: string;
+  cv?: string;
+}
+  const [errors, setErrors] = useState<FormErrors>({});
   const navigate = useNavigate();
 
   const [skillInput, setSkillInput] = useState("");
   const [skills, setSkills] = useState<string[]>([]);
 
-  const [cv, setCv] = useState(null);
-  const [photo, setPhoto] = useState(null);
+  const [cv, setCv] = useState<string|undefined>(undefined);
+  const [photo, setPhoto] = useState<string|undefined>(undefined);
 
-  const [formData, setFormData] = useState({
+  interface EmployeeFormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  experience: number;
+  technology: string;
+  photo: File | null;
+  cv: File | null;
+}
+
+  const [formData, setFormData] = useState<EmployeeFormData>({
     firstName: "",
     lastName: "",
     email: "",
@@ -71,8 +92,8 @@ const Add_employee = () => {
     setSkills((prev) => prev.filter((item) => item !== skill));
   };
 
-  const handlePhoto = (e) => {
-    const file = e.target.files[0];
+  const handlePhoto = (e : ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
     console.log(file);
 
     if (!file) return;
@@ -84,7 +105,7 @@ const Add_employee = () => {
     }));
   };
 
-  const handleCv = (e) => {
+  const handleCv = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files[0];
 
     if (!file) return;
@@ -112,11 +133,16 @@ const Add_employee = () => {
     payload.append("firstName", formData.firstName);
     payload.append("lastName", formData.lastName);
     payload.append("email", formData.email);
-    payload.append("experience", formData.experience);
+    payload.append("experience",String(formData.experience));
     payload.append("technology", formData.technology);
     payload.append("skill", JSON.stringify(skills));
-    payload.append("photo", formData.photo);
-    payload.append("cv", formData.cv);
+  if (formData.photo) {
+  payload.append("photo", formData.photo);
+}
+
+if (formData.cv) {
+  payload.append("cv", formData.cv);
+}
 
     try {
       const response = await axios.post(api.user.create, payload, {
@@ -171,13 +197,13 @@ const Add_employee = () => {
           >
             <ArrowBackIcon />
           </IconButton>
-          <Typography variant="h4" fontWeight="bold" ml="3" color="#1E3A8A">
+          <Typography variant="h4" sx={{ fontWeight:"bold" ,ml:3, color:"#1E3A8A"}}>
             Add Employee
           </Typography>
         </Stack>
 
         <Grid sx={{ display: "flex", justifyContent: "center" }}>
-          <Stack spacing={2} sx={{ m: 3 }} alignItems="center">
+          <Stack spacing={2} sx={{ m: 3, alignItems:"center" }}>
             <Avatar
               src={photo}
               sx={{
@@ -208,9 +234,9 @@ const Add_employee = () => {
                 </Button>
                 {errors.photo && (
                   <Typography
-                    color="error"
+                    
                     variant="caption"
-                    sx={{ mt: 1, display: "block" }}
+                    sx={{ mt: 1, display: "block",color:"error" }}
                   >
                     {errors.photo[0]}
                   </Typography>
@@ -345,7 +371,7 @@ const Add_employee = () => {
           </Grid>
 
           <Grid size={{ xs: 12 }}>
-            <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+            <Stack direction="row" spacing={1} sx={{ flexWrap:"wrap"}} useFlexGap>
               {skills.map((skill) => (
                 <Chip
                   key={skill}
@@ -376,15 +402,13 @@ const Add_employee = () => {
                     type="file"
                     accept=".pdf"
                     onChange={handleCv}
-                    error={!!errors.cv}
-                    helperText={errors.cv?.[0]}
+                   
                   />
                 </Button>
-                {errors.cv && (
+                {formData.cv && (
                   <Typography
-                    color="error"
                     variant="caption"
-                    sx={{ mt: 1, display: "block" }}
+                    sx={{ mt: 1, display: "block",  color:"error" }}
                   >
                     {errors.cv[0]}
                   </Typography>
