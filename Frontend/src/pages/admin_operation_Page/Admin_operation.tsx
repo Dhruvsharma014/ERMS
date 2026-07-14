@@ -32,7 +32,12 @@ import { useAuth } from "../../context/AuthContext";
 
 const Admin_operation = () => {
   const navigate = useNavigate();
-  const [admin_Data, setAdmin_Data] = useState<any>([]);
+  interface Admin{
+  _id?: string;
+  role:string;
+  email:string;
+  }
+  const [admin_Data, setAdmin_Data] = useState<Admin[]>([]);
   const [open, setOpen] = useState<any>("");
   const [storeId, setStoreId] = useState<any>("");
 
@@ -175,7 +180,7 @@ const Admin_operation = () => {
               component={"div"}
               count={totalAdmin}
               page={page}
-              onPageChange={(e, newpage) => setPage(newpage)}
+              onPageChange={(newpage) => setPage(newpage)}
               rowsPerPage={rowsPerPage}
               onRowsPerPageChange={(e) => {
                 setRowsPerPage(parseInt(e.target.value));
